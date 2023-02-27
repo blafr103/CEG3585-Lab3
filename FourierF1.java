@@ -8,7 +8,7 @@ public class FourierF1 {
     double sum = 0.0;
     
     for (int n = 1; n <= 100; n++) {
-      double bn = (-20 * Math.cos(n * pi)) / (n * pi);
+      double bn = (-20 * Math.cos(n * Math.PI)) / (n * Math.PI);
       sum += a0 + an*Math.cos(n*Math.PI)+bn*Math.sin(n*Math.PI);
     }
     
