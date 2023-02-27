@@ -12,6 +12,6 @@ public class FourierF1 {
       sum += a0 + an*Math.cos(n*Math.PI)+bn*Math.sin(n*Math.PI);
     }
     
-    System.out.println("Sum of Fourier series up to 100th harmonic: " + sum);
+		System.out.println("The Fourier series up to the 100th harmonic is: "+sum);
   }
 }
