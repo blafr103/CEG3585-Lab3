@@ -2,7 +2,6 @@ public class FourierF1 {
 
   public static void main(String[] args) {
 
-    double pi = Math.PI;
     double a0 = 0.0;
     double an = 0.0;
     double sum = 0.0;
