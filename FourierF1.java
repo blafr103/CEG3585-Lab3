@@ -9,7 +9,7 @@ public class FourierF1 {
     
     for (int n = 1; n <= 100; n++) {
       double bn = (-20 * Math.cos(n * pi)) / (n * pi);
-      sum += a0 + an + bn;
+      sum += a0 + an*Math.cos(n*Math.PI)+bn*Math.sin(n*Math.PI);
     }
     
     System.out.println("Sum of Fourier series up to 100th harmonic: " + sum);
