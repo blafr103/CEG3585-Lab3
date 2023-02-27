@@ -13,16 +13,16 @@ public class FourierSeries {
 
 	static void function1(){
 		double a0 = 0.0;
-	    double an = 0.0;
-	    double sum = 0.0;
+	    	double an = 0.0;
+	    	double sum = 0.0;
 	    
-	    for (int n = 1; n <= 100; n++) {
+	    	for (int n = 1; n <= 100; n++) {
 
-	      double bn = (-20 * Math.cos(n * pi)) / (n * pi);
-	      sum += a0 + an*Math.cos(n*Math.PI)+bn*Math.sin(n*Math.PI);
-	    }
+	      		double bn = (-20 * Math.cos(n * Math.PI)) / (n * Math.PI);
+	      		sum += a0 + an*Math.cos(n*Math.PI)+bn*Math.sin(n*Math.PI);
+	    	}
 	    
-	    System.out.println("The Fourier series up to the 100th harmonic is: " + sum);
+	    	System.out.println("The Fourier series up to the 100th harmonic is: " + sum);
 
 	}
 
@@ -44,7 +44,7 @@ public class FourierSeries {
 	static void function3(){
 
 		double a0 = 5.0;
-	    double an = 0.0;
+	   	double an = 0.0;
 		double sum = 0.0;
 			
 		for(int n=1;n<=100;n++) {
@@ -90,7 +90,7 @@ public class FourierSeries {
 
 	static void function6(){
 		double a0 = 0.0;
-    	double an = 0.0;
+    		double an = 0.0;
 		double bn = 0.0;
 		double sum = 0.0;
 		
