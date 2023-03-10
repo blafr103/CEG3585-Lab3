@@ -50,33 +50,58 @@ public class Client{
       StringBuilder encoded = new StringBuilder();
       boolean zero8 = false; 
       int zeros = 0;
-      StringBuilder OOOB = new StringBuilder("000+-0-+000+-0-+");
+      int spot = 0;
+      int ones = 0;
+      StringBuilder OOOBpos = new StringBuilder("000+-0-+000+-0-+000+-");
+      StringBuilder OOOBneg = new StringBuilder("000-+0+-000-+0+-000-+");
+      StringBuilder polarity = new StringBuilder("+");
       
-      for (int i = 0 ; i<chaine.length() ; i++){
+      encoded.append('+');
+      
+      
+      for (int i = 0 ; i<chaine.length()-1 ; i++){
          
-         if(zeros==8){zero8=true;}
+         if(zeros>=8){zero8=true;}
          
-         if (chaine.charAt(i) == 0){
+         if (chaine.charAt(i) == '0'){
             zeros++;
-         }else{
+         }else if (i!=0){
             
             if (zero8){
-               
                for (int j = 0; j<zeros; j++){
-               
-                  encoded.append(OOOB.charAt(j));
-               
+                  if (polarity.charAt(0)=='+'){
+                     encoded.append(OOOBpos.charAt(j+spot));
+                  }else{
+                     encoded.append(OOOBneg.charAt(j+spot));
+                  }
                }
-               
+               if (zeros!=0){spot=zeros-1;}
+               if (OOOBpos.charAt(spot)=='+'){
+                  polarity.replace(0, 1, "-");   
+               }else{
+                  polarity.replace(0, 1, "+");
+               }
             }else{
                for (int x = 0; x< zeros; x++){
                   encoded.append("0");
                }              
+            } 
+            if (polarity.charAt(0)=='+'){
+               encoded.append("-");
+               polarity.replace(0, 1, "-");
+            }else{
+               encoded.append("+");
+               polarity.replace(0, 1, "+");
             }
-            
-            encoded.append("1");
             zeros = 0;
+            ones++;
+            zero8 = false;
          }         
+      }
+      if (zeros!=0){
+         for (int y = 0; y< zeros; y++){
+            encoded.append("0");
+         }   
       }
       return encoded.toString();
    }
