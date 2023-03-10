@@ -59,12 +59,21 @@ public class Client{
       encoded.append('+');
       
       
-      for (int i = 0 ; i<chaine.length()-1 ; i++){
-         
-         if(zeros>=8){zero8=true;}
+      for (int i = 0 ; i<chaine.length() ; i++){
          
          if (chaine.charAt(i) == '0'){
             zeros++;
+            if(zeros>=8){zero8=true;}
+            if (i==chaine.length()-1 && zero8){
+	               for (int z = 0; z<zeros; z++){
+                     if (polarity.charAt(0)=='+'){
+	                     encoded.append(OOOBpos.charAt(z+spot));
+	                  }else{
+	                     encoded.append(OOOBneg.charAt(z+spot));
+	                  }
+	               }
+	               zeros=0;
+	            }
          }else if (i!=0){
             
             if (zero8){
