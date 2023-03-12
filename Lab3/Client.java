@@ -45,14 +45,18 @@ public class Client{
    
    
    public static String encodageB8ZS(String chaine){
-      
+      //new empty string to hold encoded message
       StringBuilder encoded = new StringBuilder();
+	//flag to let us know when we get to 8 consecutive 0s
       boolean zero8 = false; 
+	   //variables to  keep track on consecutive zeros and ones, and placeholder in B8ZS sequence
       int zeros = 0;
       int spot = 0;
       int ones = 0;
+	   //B8ZS sequences
       StringBuilder OOOBpos = new StringBuilder("000+-0-+000+-0-+000+-");
       StringBuilder OOOBneg = new StringBuilder("000-+0+-000-+0+-000-+");
+	   //keep track of polarity, initiated to positive
       StringBuilder polarity = new StringBuilder("+");
       
       encoded.append('+');
@@ -74,9 +78,9 @@ public class Client{
 	               zeros=0;
 	            }
          }else if (i!=0){
-            
+            //when 0s finish, check to see if at least 8 in sequence
             if (zero8){
-               for (int j = 0; j<zeros; j++){
+               for (int j = 0; j<zeros; j++){ //if so, append the appropriate (polariy) sequence until the amount of 0s is reached
                   if (polarity.charAt(0)=='+'){
                      encoded.append(OOOBpos.charAt(j+spot));
                   }else{
@@ -84,6 +88,7 @@ public class Client{
                   }
                }
                if (zeros!=0){spot=zeros-1;}
+		//swap the polarity when a 1 comes up
                if (OOOBpos.charAt(spot)=='+'){
                   polarity.replace(0, 1, "-");   
                }else{
@@ -94,6 +99,7 @@ public class Client{
                   encoded.append("0");
                }              
             } 
+		 //swap the polarity when a 1 comes up
             if (polarity.charAt(0)=='+'){
                encoded.append("-");
                polarity.replace(0, 1, "-");
