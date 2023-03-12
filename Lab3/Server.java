@@ -8,9 +8,13 @@ public class Server {
             Socket sSocket=socket.accept();
             DataInputStream data=new DataInputStream(sSocket.getInputStream());
             DataOutputStream dataout=new DataOutputStream(sSocket.getOutputStream());
+            String tmp="";
+            
             while(true){
-                    String tmp= (String)data.readUTF();
-                     dataout.writeUTF(tmp);
+                     tmp= (String)data.readUTF();
+                     System.out.println(tmp);
+                     dataout.writeUTF(decodageB8ZS(tmp));                     
+                     dataout.flush();
             }
         }
         catch(Exception e){
@@ -18,7 +22,7 @@ public class Server {
         }
     }
     
-    public String decodageB8ZS(String chaine){
+    public static String decodageB8ZS(String chaine){
         
         StringBuilder decoded = new StringBuilder();
         boolean zero8 = false; 
@@ -34,7 +38,7 @@ public class Server {
                        
             
         }
-    
+        return chaine;
     }
     
         

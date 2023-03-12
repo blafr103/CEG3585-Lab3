@@ -18,34 +18,33 @@ public class Client{
          DataOutputStream data=new DataOutputStream(cSocket.getOutputStream());
          DataInputStream datain=new DataInputStream(cSocket.getInputStream());
          String t="";
-         boolean empty=true;
-         while(empty){
-            String tmp=s.nextLine();
-            if(tmp != null){
+         String tmp=s.nextLine();
                t=t+tmp;
-            }else{
-               empty=false;
-            }
-         }
+
+            
+      
       //Le programme d'encodage doit envoyer un message « demande d’envoi » au programme de
       //décodage et attendre la réponse « prêt à recevoir » du programme de décodage, avant de l'envoyer
-      data.writeUTF(t);
+      data.writeUTF(encodageB8ZS(t));
       data.flush();
-           
+      
       //wait for response
-      System.out.println(datain.readUTF());
+      while(true){
+         System.out.println(datain.readUTF());
+         
       }
-         catch(Exception e){
+      }
+      catch(Exception e){
          System.out.println(e);
       }
 
       //close streams and sockets
-      cSocket.close();
+      
       s.close();
    }      
    
    
-   public String encodageB8ZS(String chaine){
+   public static String encodageB8ZS(String chaine){
       
       StringBuilder encoded = new StringBuilder();
       boolean zero8 = false; 
